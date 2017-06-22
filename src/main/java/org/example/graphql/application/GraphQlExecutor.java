@@ -27,7 +27,7 @@ public class GraphQlExecutor {
 		graphQL = new GraphQL(schema.getSchema());
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked" })
 	public Object executeRequest(Map<String, Object> requestBody) {
 		String query = (String) requestBody.get("query");
 		Map<String, Object> variables = (Map<String, Object>) requestBody.get("variables");

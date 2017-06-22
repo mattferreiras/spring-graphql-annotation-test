@@ -1,10 +1,10 @@
 package org.example.graphql.application;
 
+import javax.validation.constraints.NotNull;
+
 import graphql.annotations.GraphQLField;
 import graphql.annotations.GraphQLName;
 import graphql.schema.DataFetchingEnvironment;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * Created by matheusferreira on 21/06/17.
