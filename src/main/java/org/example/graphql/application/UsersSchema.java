@@ -12,13 +12,15 @@ import static graphql.schema.GraphQLSchema.newSchema;
  * Created by matheusferreira on 21/06/17.
  */
 @Component
-public class ApplicationSchema {
+public class UsersSchema {
 
 	private GraphQLSchema schema;
 
 	@Autowired
-	public ApplicationSchema() {
-		schema = newSchema().query(GraphQLAnnotations.object(QuerySchema.class)).mutation(GraphQLAnnotations.object(MutationSchema.class)).build();
+	public UsersSchema() {
+		schema = newSchema()
+					.query(GraphQLAnnotations.object(UserQuery.class))
+				.build();
 	}
 
 	public GraphQLSchema getSchema() {

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class GraphQlController {
 
 	@Autowired
-	private GraphQlExecutor graphQlExecutor;
+	private UserExecutor graphQlExecutor;
 
 	@PostMapping
 	@ResponseBody

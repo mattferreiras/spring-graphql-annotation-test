@@ -15,10 +15,10 @@ import java.util.Map;
  * Created by matheusferreira on 21/06/17.
  */
 @Component
-public class GraphQlExecutor {
+public class UserExecutor {
 
 	@Autowired
-	private ApplicationSchema schema;
+	private UsersSchema schema;
 
 	private GraphQL graphQL;
 
@@ -30,10 +30,11 @@ public class GraphQlExecutor {
 	@SuppressWarnings({ "unchecked" })
 	public Object executeRequest(Map<String, Object> requestBody) {
 		String query = (String) requestBody.get("query");
+		String operationName = (String) requestBody.get("operationName");
 		Map<String, Object> variables = (Map<String, Object>) requestBody.get("variables");
 		Map<String, Object> context = new HashMap<>();
 
-		ExecutionResult executionResult = graphQL.execute(query, null, context, variables);
+		ExecutionResult executionResult = graphQL.execute(query, operationName, context, variables);
 		Map<String, Object> result = new LinkedHashMap<>();
 
 		if (executionResult.getErrors().isEmpty()) {
