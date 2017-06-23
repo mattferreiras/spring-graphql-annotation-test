@@ -1,21 +1,22 @@
 package org.example.graphql.application;
 
-import graphql.ExecutionResult;
-import graphql.GraphQL;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import graphql.ExecutionResult;
+import graphql.GraphQL;
 
 /**
  * Created by matheusferreira on 21/06/17.
  */
 @Component
-public class UserExecutor {
+public class UserService {
 
 	@Autowired
 	private UsersSchema schema;
@@ -31,11 +32,12 @@ public class UserExecutor {
 	public Object executeRequest(Map<String, Object> requestBody) {
 		String query = (String) requestBody.get("query");
 		String operationName = (String) requestBody.get("operationName");
-		Map<String, Object> variables = (Map<String, Object>) requestBody.get("variables");
+		
 		Map<String, Object> context = new HashMap<>();
+		Map<String, Object> result = new LinkedHashMap<>();
+		Map<String, Object> variables = (Map<String, Object>) requestBody.get("variables");
 
 		ExecutionResult executionResult = graphQL.execute(query, operationName, context, variables);
-		Map<String, Object> result = new LinkedHashMap<>();
 
 		if (executionResult.getErrors().isEmpty()) {
 			result.put("data", executionResult.getData());

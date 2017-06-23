@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class GraphQlController {
 
 	@Autowired
-	private UserExecutor graphQlExecutor;
+	private UserService userService;
 
 	@PostMapping
 	@ResponseBody
 	public Object postGraphQl(@RequestBody Map<String, Object> requestBody) {
-		return graphQlExecutor.executeRequest(requestBody);
+		return userService.executeRequest(requestBody);
 	}
 
 }
